@@ -35,13 +35,16 @@ On MacOS systems:
 On Debian/Ubuntu systems:
 
 * SSH key is added in ~/.ssh/authorized_keys on each user profile it creates.
-* Package sudo is isntalled and users created added in the sudoers group.
+* Package sudo is installed and users created added in the sudoers group.
 
 ### Setup Requirements
 
 Install the saz-sudo module.
 
+```
 puppet module install saz-sudo --version 4.2.0
+
+```
 
 ### Beginning with puppet_localadmin
 
