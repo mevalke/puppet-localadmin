@@ -27,13 +27,15 @@ to be used with Hiera.
 Aside of the desired user resources, the module also does the following.
 
 On MacOS systems:
-SSH key is added in ~/.ssh/authorized_keys on each user profile the module creates.
-Each user created is added as a member of the admins group.
-MacOS admin users can be hidden by specifying the hide_macadmins parameter.  
+
+* SSH key is added in ~/.ssh/authorized_keys on each user profile the module creates.
+* Each user created is added as a member of the admins group.
+* MacOS admin users can be hidden by specifying the hide_macadmins parameter.  
 
 On Debian/Ubuntu systems:
-SSH key is added in ~/.ssh/authorized_keys on each user profile it creates.
-Package sudo is isntalled and users created added in the sudoers group.
+
+* SSH key is added in ~/.ssh/authorized_keys on each user profile it creates.
+* Package sudo is isntalled and users created added in the sudoers group.
 
 ### Setup Requirements
 
@@ -44,9 +46,9 @@ puppet module install saz-sudo --version 4.2.0
 ### Beginning with puppet_localadmin
 
 In order to use the module you need the following.
-1. SSH keypair
-2. Attributes for each MacOS user to be created.
-3. Attributes for each Linux user to be created.
+* SSH keypair
+* Attributes for each MacOS user to be created.
+* Attributes for each Linux user to be created.
  
 Create an SSH key pair and cat out the content of the public key. 
 
@@ -58,8 +60,11 @@ cat ~/.ssh/admin@example.com.pub
 Acquiring the user attributes on a Mac.
 
 If you want set the uid and gid below 500 (and then hiding the users with id´s below 500), first check if the desired id is available.
+
+```
 dscl . list /Users UniqueID|grep 444
 dscacheutil -q group|grep 444
+```
 
 Example of creation of a local admin account called 'admin1' with a password of 'Passw0rd'.
 
@@ -158,17 +163,17 @@ class profiles::localadmin {
 
 ## Reference
 
-puppet_localadmin: Main class that requires 3 parameters and calls either puppet_localadmin::mac_setup or puppet_localadmin::linux_setup.
-puppet_localadmin::mac_setup: Sets up the users in MacOS.
-puppet_localadmin::linux_setup: Sets up the users in Linux.
+* puppet_localadmin: Main class that requires 3 parameters and calls either puppet_localadmin::mac_setup or puppet_localadmin::linux_setup.
+* puppet_localadmin::mac_setup: Sets up the users in MacOS.
+* puppet_localadmin::linux_setup: Sets up the users in Linux.
 
 ## Limitations
 
 Tested with:
-MacOS 10.12 Sierra
-MacOS 10.11 El Capitan
-Ubuntu 16.04 Xenial
-Debian 8 Jessie
+* MacOS 10.12 Sierra
+* MacOS 10.11 El Capitan
+* Ubuntu 16.04 Xenial
+* Debian 8 Jessie
 
 ## Development
 
