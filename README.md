@@ -35,7 +35,7 @@ On Debian/Ubuntu systems:
 SSH key is added in ~/.ssh/authorized_keys on each user profile it creates.
 Package sudo is isntalled and users created added in the sudoers group.
 
-### Setup Requirements **OPTIONAL**
+### Setup Requirements
 
 Install the saz-sudo module.
 
@@ -49,8 +49,11 @@ In order to use the module you need the following.
 3. Attributes for each Linux user to be created.
  
 Create an SSH key pair and cat out the content of the public key. 
+
+```
 ssh-keygen -f ~/.ssh/admin@example.com
 cat ~/.ssh/admin@example.com.pub
+```
 
 Acquiring the user attributes on a Mac.
 
@@ -59,6 +62,8 @@ dscl . list /Users UniqueID|grep 444
 dscacheutil -q group|grep 444
 
 Example of creation of a local admin account called 'admin1' with a password of 'Passw0rd'.
+
+```
 dscl . create /Users/admin1
 dscl . create /Users/admin1 UserShell /bin/bash 
 dscl . create /Users/admin1 RealName "Local Admin"
@@ -67,9 +72,11 @@ dscl . create /Users/admin1 GroupID 444
 dscl . create /Users/admin1 NFSHomeDirectory /Users/admin1
 dscl . passwd /Users/admin1 Passw0rd
 dscl . append /Groups/admin GroupMembership admin
+```
 
 Once the user has been created the attributes can be printed and re-used:
 
+```
 sudo puppet resource user admin1
 user { 'admin1':
   ensure     => 'present',
@@ -82,18 +89,24 @@ user { 'admin1':
   shell      => '/bin/bash',
   uid        => '444',
 }
+```
 
-Linux:
+On Linux:
+
 Generating a password hash to use in the user resource (remember to replace "Passw0rd" with the correct password):
+
+```
 root@server:/home/admin# python -c "import random,string,crypt;
 > randomsalt = ''.join(random.sample(string.ascii_letters,8));
 > print crypt.crypt('Passw0rd', '\$6\$%s\$' % randomsalt)"
 $6$rwgFfKNe$SMn6VgH/2LZXeEQpG8qPHXmak8XPWJv1InId33mhXRrrNHrh5k8IEadRQtpg.mqghQQrPCucKZ2HSkIDPC7rZ.
+```
 
 ## Usage
 
 Sample Hiera configuration using the above attributes:
 
+```
 localadmin::macadmins:
   admin1:
    local_admin: 'admin1'
@@ -125,9 +138,11 @@ localadmin::linuxadmins:
    password: '$6$rwgFfKNe$SMn6VgH/2LZXeEQpG8qPHXmak8XPWJv1InId33mhXRrrNHrh5k8IEadRQtpg.mqghQQrPCucKZ2HSkIDPC7rZ.'
    ssh_keyname: 'admin@example.com'
    ssh_key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDNid0GR3NT2bOJhDU85skKLeC2qtuMuShZE8GtNTkR1S2a0wzt1IWKgf+L6wNG/+Z7FNX3THQsywEKguHpidyMl6pr2CPnnraNe/PS1XYlc0BeyZ7qwPWCqg9DxjtpKfKhQ0vGAZwcw/tExcVFQ5tL+jMevKYi6H+CdzgbY03p1md6Qdxw48aPBpARHmx/mKcNlbSbbR14mXyQI1sFhQheYniU6UJUNPL5+12LCPmdCbn2uoxoTKafHkCy7g4er58MgceszO9znpYOBFgr7lwTlR38DYczklaq1+cZi2eXM9/ZR1v0G6tZtNi9jgG1ZWr1V/5j0CWNOOBKGTNKWdw1'
+```
 
 Sample profile manifest:
 
+```
 class profiles::localadmin {
   $macadmins      = lookup(localadmin::macadmins)
   $hide_macadmins = lookup(localadmin::hide_macadmins)
@@ -139,6 +154,7 @@ class profiles::localadmin {
     hide_macadmins => $hide_macadmins,
   }
 }
+```
 
 ## Reference
 
@@ -158,6 +174,6 @@ Debian 8 Jessie
 
 Any form of contribution is welcomed.
 
-## Release Notes/Contributors/Etc. **Optional**
+## Release Notes
 
 0.1.0: First release
