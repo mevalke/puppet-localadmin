@@ -1,0 +1,15 @@
+{
+  "name": "mevalke-puppet_localadmin",
+  "version": "0.1.0",
+  "author": "mevalke",
+  "summary": "Puppet module for creating users with sudo privileges.",
+  "license": "Apache-2.0",
+  "source": "https://github.com/mevalke/puppet_localadmin",
+  "project_page": "https://github.com/mevalke/puppet_localadmin",
+  "issues_url": "https://github.com/mevalke/puppet_localadmin/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+
