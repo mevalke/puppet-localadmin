@@ -1,4 +1,4 @@
-define puppet_localadmin::mac_setup (
+define localadmin::mac_setup (
   $local_admin,
   $gid,
   $iterations,

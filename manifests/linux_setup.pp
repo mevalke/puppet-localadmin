@@ -1,4 +1,4 @@
-define puppet_localadmin::linux_setup (
+define localadmin::linux_setup (
   $local_admin,
   $password,
   $ssh_keyname,

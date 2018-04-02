@@ -1,4 +1,4 @@
-# Class: puppet_localadmin
+# Class: localadmin
 # ===========================
 #
 # This class expects to be called with 3 parameters that are then passed to a define, either mac_setup or linux_setup, depending on the OS.
@@ -25,7 +25,7 @@
 #
 # Copyright 2017 Miikka Valkeapää, unless otherwise noted.
 #
-class puppet_localadmin (
+class localadmin (
   $macadmins,
   $hide_macadmins,
   $linuxadmins,
@@ -37,7 +37,7 @@ class puppet_localadmin (
         ensure => present,
       }
       $macadmins.each |$admin_name, $args_array| {
-        puppet_localadmin::mac_setup { "$admin_name":
+        localadmin::mac_setup { "$admin_name":
           local_admin    => $args_array[local_admin],
           gid            => $args_array[gid],
           iterations     => $args_array[iterations],
@@ -55,7 +55,7 @@ class puppet_localadmin (
         config_file_replace => false,
       }
       $linuxadmins.each |$admin_name, $args_array| {
-        puppet_localadmin::linux_setup { "$admin_name":
+        localadmin::linux_setup { "$admin_name":
           local_admin => $args_array[local_admin],
           password    => $args_array[password],
           ssh_keyname => $args_array[ssh_keyname],
