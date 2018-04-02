@@ -1,12 +1,12 @@
-# puppet_localadmin
+# puppet-localadmin
 
 #### Table of Contents
 
 1. [Description](#description)
-1. [Setup - The basics of getting started with puppet_localadmin](#setup)
-    * [What puppet_localadmin affects](#what-puppet_localadmin-affects)
+1. [Setup - The basics of getting started with puppet-localadmin](#setup)
+    * [What puppet-localadmin affects](#what-puppet-localadmin-affects)
     * [Setup requirements](#setup-requirements)
-    * [Beginning with puppet_localadmin](#beginning-with-puppet_localadmin)
+    * [Beginning with puppet-localadmin](#beginning-with-puppet-localadmin)
 1. [Usage - Configuration options and additional functionality](#usage)
 1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 1. [Limitations - OS compatibility, etc.](#limitations)
@@ -22,7 +22,7 @@ to be used with Hiera.
 
 ## Setup
 
-### What puppet_localadmin affects
+### What puppet-localadmin affects
 
 Aside of the desired user resources, the module also does the following.
 
@@ -46,7 +46,7 @@ puppet module install saz-sudo --version 4.2.0
 
 ```
 
-### Beginning with puppet_localadmin
+### Beginning with puppet-localadmin
 
 In order to use the module you need the following.
 * SSH keypair
@@ -151,12 +151,12 @@ localadmin::linuxadmins:
 Sample profile manifest:
 
 ```
-class profiles::localadmin {
+class profile::localadmin {
   $macadmins      = lookup(localadmin::macadmins)
   $hide_macadmins = lookup(localadmin::hide_macadmins)
   $linuxadmins    = lookup(localadmin::linuxadmins)
    
-  class { 'puppet_localadmin':  
+  class { 'localadmin':  
     macadmins      => $macadmins,
     linuxadmins    => $linuxadmins,
     hide_macadmins => $hide_macadmins,
@@ -166,9 +166,9 @@ class profiles::localadmin {
 
 ## Reference
 
-* puppet_localadmin: Main class that requires 3 parameters and calls either puppet_localadmin::mac_setup or puppet_localadmin::linux_setup.
-* puppet_localadmin::mac_setup: Sets up the users in MacOS.
-* puppet_localadmin::linux_setup: Sets up the users in Linux.
+* localadmin: Main class that requires 3 parameters and calls either puppet-localadmin::mac_setup or puppet-localadmin::linux_setup.
+* localadmin::mac_setup: Sets up the users in MacOS.
+* localadmin::linux_setup: Sets up the users in Linux.
 
 ## Limitations
 
