@@ -8,7 +8,7 @@ define localadmin::linux_setup (
     ensure     => present,
     password   => "$password",
     comment    => 'Local Admin',
-    groups     => ['cdrom', 'floppy', 'audio', 'dip', 'video', 'plugdev', 'netdev', 'lpadmin'],
+    groups     => ['cdrom', 'floppy', 'audio', 'dip', 'video', 'plugdev', 'netdev'],
     home       => "/home/$local_admin",
     shell      => '/bin/bash',
     managehome => true,
