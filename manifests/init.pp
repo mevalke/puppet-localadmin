@@ -15,23 +15,12 @@
 #
 # Please see the readme.
 #
-# Authors
-# -------
-#
-# Author Name mevalke@gmail.com
-#
-# Copyright
-# ---------
-#
-# Copyright 2017 Miikka Valkeapää, unless otherwise noted.
-#
-class localadmin (
-  $macadmins,
-  $hide_macadmins,
-  $linuxadmins,
-){
+class localadmin {
   case $kernel {
     'Darwin': {
+      $macadmins = lookup(localadmin_macadmins)
+      $hide_macadmins = lookup(localadmin_hide_macadmins)
+      
       group { 'com.apple.access_ssh':
         name   => 'com.apple.access_ssh',
         ensure => present,
@@ -51,6 +40,8 @@ class localadmin (
       }
     }
     'Linux': {
+      $linuxadmins = lookup(localadmin_linuxadmins)
+    
       class { 'sudo':
         config_file_replace => false,
       }

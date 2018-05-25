@@ -112,10 +112,29 @@ $6$rwgFfKNe$SMn6VgH/2LZXeEQpG8qPHXmak8XPWJv1InId33mhXRrrNHrh5k8IEadRQtpg.mqghQQr
 
 ## Usage
 
-Sample Hiera configuration using the above attributes:
+Sample Hiera configuration using the above attributes.
+
+On Linux:
 
 ```
-localadmin::macadmins:
+localadmin::hide_macadmins: 'FALSE'
+localadmin_linuxadmins:
+  admin1:
+   local_admin: 'admin1'
+   password: '$6$rwgFfKNe$SMn6VgH/2LZXeEQpG8qPHXmak8XPWJv1InId33mhXRrrNHrh5k8IEadRQtpg.mqghQQrPCucKZ2HSkIDPC7rZ.'
+   ssh_keyname: 'admin1@example.com'
+   ssh_key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDNid0GR3NT2bOJhDU85skKLeC2qtuMuShZE8GtNTkR1S2a0wzt1IWKgf+L6wNG/+Z7FNX3THQsywEKguHpidyMl6pr2CPnnraNe/PS1XYlc0BeyZ7qwPWCqg9DxjtpKfKhQ0vGAZwcw/tExcVFQ5tL+jMevKYi6H+CdzgbY03p1md6Qdxw48aPBpARHmx/mKcNlbSbbR14mXyQI1sFhQheYniU6UJUNPL5+12LCPmdCbn2uoxoTKafHkCy7g4er58MgceszO9znpYOBFgr7lwTlR38DYczklaq1+cZi2eXM9/ZR1v0G6tZtNi9jgG1ZWr1V/5j0CWNOOBKGTNKWdw1'
+  admin2:
+   local_admin: 'admin2'
+   password: '$6$rwgFfKNe$SMn6VgH/2LZXeEQpG8qPHXmak8XPWJv1InId33mhXRrrNHrh5k8IEadRQtpg.mqghQQrPCucKZ2HSkIDPC7rZ.'
+   ssh_keyname: 'admin@example.com'
+   ssh_key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDNid0GR3NT2bOJhDU85skKLeC2qtuMuShZE8GtNTkR1S2a0wzt1IWKgf+L6wNG/+Z7FNX3THQsywEKguHpidyMl6pr2CPnnraNe/PS1XYlc0BeyZ7qwPWCqg9DxjtpKfKhQ0vGAZwcw/tExcVFQ5tL+jMevKYi6H+CdzgbY03p1md6Qdxw48aPBpARHmx/mKcNlbSbbR14mXyQI1sFhQheYniU6UJUNPL5+12LCPmdCbn2uoxoTKafHkCy7g4er58MgceszO9znpYOBFgr7lwTlR38DYczklaq1+cZi2eXM9/ZR1v0G6tZtNi9jgG1ZWr1V/5j0CWNOOBKGTNKWdw1'
+```
+
+On a Mac:
+
+```
+localadmin_macadmins:
   admin1:
    local_admin: 'admin1'
    gid: '20'
@@ -134,36 +153,9 @@ localadmin::macadmins:
    uid: '445'
    ssh_keyname: 'admin.example.com'
    ssh_key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDNid0GR3NT2bOJhDU85skKLeC2qtuMuShZE8GtNTkR1S2a0wzt1IWKgf+L6wNG/+Z7FNX3THQsywEKguHpidyMl6pr2CPnnraNe/PS1XYlc0BeyZ7qwPWCqg9DxjtpKfKhQ0vGAZwcw/tExcVFQ5tL+jMevKYi6H+CdzgbY03p1md6Qdxw48aPBpARHmx/mKcNlbSbbR14mXyQI1sFhQheYniU6UJUNPL5+12LCPmdCbn2uoxoTKafHkCy7g4er58MgceszO9znpYOBFgr7lwTlR38DYczklaq1+cZi2eXM9/ZR1v0G6tZtNi9jgG1ZWr1V/5j0CWNOOBKGTNKWdw1'
-localadmin::hide_macadmins: 'FALSE'
-localadmin::linuxadmins:
-  admin1: 
-   local_admin: 'admin1'
-   password: '$6$rwgFfKNe$SMn6VgH/2LZXeEQpG8qPHXmak8XPWJv1InId33mhXRrrNHrh5k8IEadRQtpg.mqghQQrPCucKZ2HSkIDPC7rZ.'
-   ssh_keyname: 'admin1@example.com'
-   ssh_key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDNid0GR3NT2bOJhDU85skKLeC2qtuMuShZE8GtNTkR1S2a0wzt1IWKgf+L6wNG/+Z7FNX3THQsywEKguHpidyMl6pr2CPnnraNe/PS1XYlc0BeyZ7qwPWCqg9DxjtpKfKhQ0vGAZwcw/tExcVFQ5tL+jMevKYi6H+CdzgbY03p1md6Qdxw48aPBpARHmx/mKcNlbSbbR14mXyQI1sFhQheYniU6UJUNPL5+12LCPmdCbn2uoxoTKafHkCy7g4er58MgceszO9znpYOBFgr7lwTlR38DYczklaq1+cZi2eXM9/ZR1v0G6tZtNi9jgG1ZWr1V/5j0CWNOOBKGTNKWdw1'
-  admin2:
-   local_admin: 'admin2'
-   password: '$6$rwgFfKNe$SMn6VgH/2LZXeEQpG8qPHXmak8XPWJv1InId33mhXRrrNHrh5k8IEadRQtpg.mqghQQrPCucKZ2HSkIDPC7rZ.'
-   ssh_keyname: 'admin@example.com'
-   ssh_key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDNid0GR3NT2bOJhDU85skKLeC2qtuMuShZE8GtNTkR1S2a0wzt1IWKgf+L6wNG/+Z7FNX3THQsywEKguHpidyMl6pr2CPnnraNe/PS1XYlc0BeyZ7qwPWCqg9DxjtpKfKhQ0vGAZwcw/tExcVFQ5tL+jMevKYi6H+CdzgbY03p1md6Qdxw48aPBpARHmx/mKcNlbSbbR14mXyQI1sFhQheYniU6UJUNPL5+12LCPmdCbn2uoxoTKafHkCy7g4er58MgceszO9znpYOBFgr7lwTlR38DYczklaq1+cZi2eXM9/ZR1v0G6tZtNi9jgG1ZWr1V/5j0CWNOOBKGTNKWdw1'
-```
-
-Sample profile manifest:
-
-```
-class profile::localadmin {
-  $macadmins      = lookup(localadmin::macadmins)
-  $hide_macadmins = lookup(localadmin::hide_macadmins)
-  $linuxadmins    = lookup(localadmin::linuxadmins)
-   
-  class { 'localadmin':  
-    macadmins      => $macadmins,
-    linuxadmins    => $linuxadmins,
-    hide_macadmins => $hide_macadmins,
-  }
-}
-```
-
+localadmin_hide_macadmins: 'FALSE'
+````
+	
 ## Reference
 
 * localadmin: Main class that requires 3 parameters and calls either puppet-localadmin::mac_setup or puppet-localadmin::linux_setup.
