@@ -117,7 +117,7 @@ Sample Hiera configuration using the above attributes.
 On Linux:
 
 ```
-localadmin::hide_macadmins: 'FALSE'
+---
 localadmin_linuxadmins:
   admin1:
    local_admin: 'admin1'
@@ -134,6 +134,7 @@ localadmin_linuxadmins:
 On a Mac:
 
 ```
+---
 localadmin_macadmins:
   admin1:
    local_admin: 'admin1'

@@ -43,6 +43,7 @@ class localadmin {
       $linuxadmins = lookup(localadmin_linuxadmins)
     
       class { 'sudo':
+        purge               => false,
         config_file_replace => false,
       }
       $linuxadmins.each |$admin_name, $args_array| {
